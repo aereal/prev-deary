@@ -11,6 +11,7 @@ gem 'sass'
 gem 'slim'
 gem 'pg'
 gem 'sequel'
+gem 'kramdown'
 
 # Test requirements
 group :test do
