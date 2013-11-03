@@ -7,6 +7,12 @@ module Deary
 
     enable :sessions
 
+    configure :development do
+      Slim::Engine.set_default_options(
+        pretty: true,
+      )
+    end
+
     ##
     # Caching support.
     #
