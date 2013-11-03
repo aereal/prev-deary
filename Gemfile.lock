@@ -60,6 +60,9 @@ GEM
       yard (>= 0.8)
     pry-padrino (0.1.2)
       pry (>= 0.8)
+    pry-remote (0.1.7)
+      pry (~> 0.9)
+      slop (~> 3.0)
     rack (1.5.2)
     rack-protection (1.5.1)
       rack
@@ -98,6 +101,7 @@ DEPENDENCIES
   pg
   pry-doc
   pry-padrino
+  pry-remote
   rack-test
   rake
   sass

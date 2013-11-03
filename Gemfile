@@ -22,6 +22,7 @@ end
 group :development do
   gem 'pry-padrino'
   gem 'pry-doc'
+  gem 'pry-remote'
   gem 'hirb'
   gem 'hirb-unicode'
 end
