@@ -1,0 +1,9 @@
+---
+:orm: sequel
+:test: minitest
+:mock: none
+:script: none
+:renderer: slim
+:stylesheet: scss
+:namespace: Deary
+:migration_format: number
