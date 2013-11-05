@@ -10,6 +10,13 @@ module Deary
     set :site_title, 'Deary'
     set :title_placeholder, '✖'
 
+    configure do
+      Slim::Engine.set_default_options(
+        format: :html5,
+        tabsize: 2,
+      )
+    end
+
     configure :development do
       Slim::Engine.set_default_options(
         pretty: true,
