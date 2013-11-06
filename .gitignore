@@ -9,3 +9,5 @@ db/*.db
 .*.sw*
 /node_modules
 /bower_components
+/public/javascripts/app.js
+/public/stylesheets/app.css
