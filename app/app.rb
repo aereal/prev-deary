@@ -4,6 +4,7 @@ module Deary
     register Padrino::Rendering
     register Padrino::Mailer
     register Padrino::Helpers
+    register Deary::XFromProtection
 
     enable :sessions
 
@@ -18,6 +19,8 @@ module Deary
     end
 
     configure :development do
+      set :host, 'deary.dev'
+
       Slim::Engine.set_default_options(
         pretty: true,
       )
