@@ -1,0 +1,16 @@
+doctype html
+html itemscope='itemscope' itemtype="http://schema.org/#{page_type}"
+  head
+    meta charset='utf-8'
+    title = page_title
+    - unless page_type == :Article
+      meta itemprop="name" content=page_title
+    script src="/javascripts/app.js"
+    link rel='stylesheet' type='text/css' href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css"
+    == stylesheet_link_tag 'app'
+  body
+    div.pure-g-r.wrapper
+      header.header.pure-u
+        h1 == link_to site_title, '/'
+      div.main.pure-u-1
+        == yield

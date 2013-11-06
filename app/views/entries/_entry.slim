@@ -1,0 +1,8 @@
+== article_tag do
+  h1 itemprop='name'
+    == link_to entry.title || settings.title_placeholder, entry.path, itemprop: 'url', unless: :current
+  div.meta
+    time datetime=entry.created_at.iso8601 data-relative-time=true pubdate='pubdate' itemprop='datePublished'
+      = entry.created_at
+  div.body itemprop='articleBody'
+    == entry.formatted_body
