@@ -28,3 +28,20 @@ DearyApp.controller 'EditEntryCtrl', ['$scope', '$http', ($scope, $http) ->
         'Content-Type': 'application/json'
     ).success -> window.location.reload()
 ]
+
+DearyApp.controller 'NewEntryCtrl', ['$scope', '$http', ($scope, $http) ->
+  $scope.showEditor = false
+  $scope.path = '/-/entries'
+
+  $scope.edit = () ->
+    $scope.showEditor = true
+
+  $scope.save = (entry) ->
+    $http(
+      method: 'POST'
+      url: $scope.path
+      data: entry
+      headers:
+        'Content-Type': 'application/json'
+    ).success -> window.location.reload()
+]

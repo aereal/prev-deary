@@ -43,4 +43,26 @@
     }
   ]);
 
+  DearyApp.controller('NewEntryCtrl', [
+    '$scope', '$http', function($scope, $http) {
+      $scope.showEditor = false;
+      $scope.path = '/-/entries';
+      $scope.edit = function() {
+        return $scope.showEditor = true;
+      };
+      return $scope.save = function(entry) {
+        return $http({
+          method: 'POST',
+          url: $scope.path,
+          data: entry,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).success(function() {
+          return window.location.reload();
+        });
+      };
+    }
+  ]);
+
 }).call(this);

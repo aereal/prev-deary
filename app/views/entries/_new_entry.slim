@@ -1,0 +1,15 @@
+div#new-entry data-ng-controller='NewEntryCtrl'
+  p
+    a href='' data-ng-click='edit()'
+      | New Entry
+  div.editor data-ng-show='showEditor'
+    form
+      div.form-group
+        input.form-control type='text' data-ng-model='entry.title' placeholder='週末は川に行きました'
+      div.form-group
+        textarea.form-control data-ng-model='entry.body' placeholder='山は芝刈り、川は洗濯です' rows=15
+      div.form-group
+        button.btn.btn-primary data-ng-click='save(entry)'
+          | Save
+        button.btn.btn-default data-ng-click='showEditor=false'
+          | Cancel
