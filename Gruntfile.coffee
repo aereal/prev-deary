@@ -13,6 +13,7 @@ module.exports = (grunt) ->
       js:
         src: [
           'bower_components/jquery/jquery.js'
+          'bower_components/angular/angular.js'
           "#{assetsDirectory}/**/*.js"
         ]
         dest: 'public/javascripts/app.js'
