@@ -7,6 +7,7 @@ Deary::App.helpers do
         itemscope: true,
         itemtype:  article_type,
         itemprop:  :BlogPost,
+        'data-ng-controller' => 'EditEntryCtrl',
       )
     end
     content_tag(:article, options, &block)

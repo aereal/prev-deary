@@ -1,8 +1,22 @@
 == article_tag do
-  h1 itemprop='name'
-    == link_to entry.title || settings.title_placeholder, entry.path, itemprop: 'url', unless: :current
-  div.meta
-    time datetime=entry.created_at.iso8601 data-relative-time=true pubdate='pubdate' itemprop='datePublished'
-      = entry.created_at
-  div.body itemprop='articleBody'
-    == entry.formatted_body
+  div.content data-ng-show='!showEditor'
+    h1 itemprop='name'
+      == link_to entry.title || settings.title_placeholder, entry.path, itemprop: 'url', unless: :current
+    div.meta
+      time datetime=entry.created_at.iso8601 data-relative-time=true pubdate='pubdate' itemprop='datePublished'
+        = entry.created_at
+      a href='' data-ng-click='edit("#{entry.path}")'
+        | Edit
+    div.body itemprop='articleBody'
+      == entry.formatted_body
+  div.editor data-ng-show='showEditor'
+    form
+      div.form-group
+        input.form-control type='text' data-ng-model='entry.title' placeholder='週末は川に行きました'
+      div.form-group
+        textarea.form-control data-ng-model='entry.body' placeholder='山は芝刈り、川は洗濯です' rows=15
+      div.form-group
+        button.btn.btn-primary data-ng-click='save(entry)'
+          | Save
+        button.btn.btn-default data-ng-click='showEditor=false'
+          | Cancel
