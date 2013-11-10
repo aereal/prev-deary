@@ -1,14 +1,7 @@
-== article_tag do
-  div.content data-ng-show='!showEditor'
-    h1 itemprop='name'
-      == link_to entry.title || settings.title_placeholder, entry.path, itemprop: 'url', unless: :current
-    div.meta
-      time datetime=entry.created_at.iso8601 data-relative-time=true pubdate='pubdate' itemprop='datePublished'
-        = entry.created_at
-      a href='' data-ng-click='edit("#{entry.path}")'
-        | Edit
-    div.body itemprop='articleBody'
-      == entry.formatted_body
+div#new-entry data-ng-controller='NewEntryCtrl'
+  p
+    a href='' data-ng-click='edit()'
+      | New Entry
   div.editor data-ng-show='showEditor'
     form
       div.form-group
