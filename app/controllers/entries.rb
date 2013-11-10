@@ -41,12 +41,11 @@ Deary::App.controllers :entries do
       halt 400 unless request.content_type == 'application/json'
 
       @entry = Entry.where(path: request.path).first or halt 404
-      body = JSON.parse(request.body.string)
 
-      if @entry.update(body.slice('title', 'body'))
+      if @entry.update(entry_params.slice('title', 'body'))
         halt 200
       else
-        logger.warn "Bad Request: #{params}"
+        logger.warn "Bad Request: #{request.body.string}"
         halt 400
       end
     end
