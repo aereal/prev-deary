@@ -24,4 +24,5 @@ group :development do
   gem 'pry-padrino'
   gem 'pry-doc'
   gem 'pry-remote'
+  gem 'foreman'
 end

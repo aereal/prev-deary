@@ -11,3 +11,4 @@ db/*.db
 /bower_components
 /public/javascripts/app.js
 /public/stylesheets/app.css
+.env
