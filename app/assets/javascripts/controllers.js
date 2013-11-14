@@ -18,6 +18,31 @@
     }
   ]);
 
+  DearyApp.controller('SessionCtrl', [
+    '$scope', '$http', function($scope, $http) {
+      $scope.logout = function() {
+        return $http({
+          method: 'DELETE',
+          url: '/-/sessions'
+        }).success(function() {
+          return window.location.pathname = '/';
+        });
+      };
+      return $scope.login = function(user) {
+        return $http({
+          method: 'POST',
+          url: '/-/sessions',
+          data: user,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).success(function() {
+          return window.location.pathname = '/';
+        });
+      };
+    }
+  ]);
+
   DearyApp.controller('EditEntryCtrl', [
     '$scope', '$http', function($scope, $http) {
       $scope.showEditor = false;

@@ -10,6 +10,23 @@ DearyApp.config ['$httpProvider', ($httpProvider) ->
   $httpProvider.defaults.headers[httpMethod] = { 'X-From': window.location.origin } for httpMethod in unindempotentMethods
 ]
 
+DearyApp.controller 'SessionCtrl', ['$scope', '$http', ($scope, $http) ->
+  $scope.logout = ->
+    $http(
+      method: 'DELETE'
+      url: '/-/sessions'
+    ).success -> window.location.pathname = '/'
+
+  $scope.login = (user) ->
+    $http(
+      method: 'POST'
+      url: '/-/sessions'
+      data: user
+      headers:
+        'Content-Type' : 'application/json'
+    ).success -> window.location.pathname = '/'
+]
+
 DearyApp.controller 'EditEntryCtrl', ['$scope', '$http', ($scope, $http) ->
   $scope.showEditor = false
 

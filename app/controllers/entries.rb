@@ -5,6 +5,12 @@ Deary::App.controllers :entries do
     end
   end
 
+  before :create do
+    unless logged_in?
+      halt 403
+    end
+  end
+
   get :index, '/' do
     @entries = Entry.recently
     render 'entries/index'
