@@ -1,6 +1,6 @@
 ---
 :orm: sequel
-:test: minitest
+:test: rspec
 :mock: none
 :script: none
 :renderer: slim

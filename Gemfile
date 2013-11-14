@@ -15,7 +15,7 @@ gem 'kramdown'
 
 # Test requirements
 group :test do
-  gem 'minitest', '~> 2.6.0', require: 'minitest/autorun'
+  gem 'rspec'
   gem 'rack-test', require: 'rack/test'
 end
 
