@@ -5,7 +5,7 @@ Deary::App.controllers :entries do
     end
   end
 
-  before :create do
+  before :create, :update do
     unless logged_in?
       halt 403
     end
