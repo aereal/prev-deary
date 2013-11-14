@@ -12,6 +12,7 @@ gem 'slim'
 gem 'pg'
 gem 'sequel'
 gem 'kramdown'
+gem 'oj'
 
 # Test requirements
 group :test do

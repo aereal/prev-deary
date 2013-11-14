@@ -31,6 +31,7 @@ GEM
     multi_json (1.8.2)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    oj (2.2.0)
     padrino (0.11.4)
       padrino-admin (= 0.11.4)
       padrino-cache (= 0.11.4)
@@ -118,6 +119,7 @@ DEPENDENCIES
   database_cleaner
   foreman
   kramdown
+  oj
   padrino (= 0.11.4)
   pg
   pry-doc

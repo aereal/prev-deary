@@ -17,7 +17,7 @@ Deary::App.controllers :entries do
 
     if @entry.save
       content_type :json
-      @entry.to_hash.to_json
+      @entry.to_json
     else
       logger.warn "Bad request: #{request.body}"
       halt 400
@@ -30,7 +30,7 @@ Deary::App.controllers :entries do
 
       if format == 'json'
         content_type :json
-        @entry.to_hash.to_json
+        @entry.to_json
       else
         @page_title = @entry.title
         render 'entries/show'

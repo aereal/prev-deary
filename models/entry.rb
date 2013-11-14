@@ -32,4 +32,8 @@ class Entry < Sequel::Model
   def before_save
     self.updated_at = Time.now
   end
+
+  def to_json
+    Oj.dump(self.to_hash.stringify_keys)
+  end
 end
