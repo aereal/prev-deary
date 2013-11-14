@@ -1,7 +1,7 @@
 Deary::App.controllers :entries do
   helpers do
     def entry_params
-      @_entry_params ||= JSON.parse(request.body.string)
+      @_entry_params ||= Oj.load(request.body.string)
     end
   end
 
@@ -23,7 +23,7 @@ Deary::App.controllers :entries do
 
     if @entry.save
       content_type :json
-      @entry.to_json
+      Oj.dump(@entry.to_hash.stringify_keys)
     else
       logger.warn "Bad request: #{request.body}"
       halt 400
