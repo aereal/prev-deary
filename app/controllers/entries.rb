@@ -6,7 +6,7 @@ Deary::App.controllers :entries do
   end
 
   get :index, '/' do
-    @entries = Entry.order(:created_at).reverse
+    @entries = Entry.recently
     render 'entries/index'
   end
 
