@@ -2,6 +2,10 @@ module.exports = (grunt) ->
   assetsDirectory = 'app/assets/javascripts'
 
   grunt.initConfig
+    sass:
+      dist:
+        files:
+          "public/stylesheets/style.css": "app/assets/stylesheets/style.scss"
     coffee:
       glob_to_multiple:
         expand: true
@@ -18,9 +22,18 @@ module.exports = (grunt) ->
         ]
         dest: 'public/javascripts/app.js'
 
-  grunt.loadNpmTasks "grunt-contrib-#{task}" for task in ['coffee', 'concat']
+  grunt.loadNpmTasks "grunt-contrib-#{task}" for task in ['coffee', 'concat', 'sass']
 
   grunt.registerTask 'js', [
     'coffee'
     'concat:js'
+  ]
+
+  grunt.registerTask 'css', [
+    'sass:dist'
+  ]
+
+  grunt.registerTask 'default', [
+    'css'
+    'js'
   ]
