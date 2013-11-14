@@ -12,10 +12,11 @@ DearyApp.config ['$httpProvider', ($httpProvider) ->
 
 DearyApp.controller 'SessionCtrl', ['$scope', '$http', ($scope, $http) ->
   $scope.logout = ->
-    $http(
-      method: 'DELETE'
-      url: '/-/sessions'
-    ).success -> window.location.pathname = '/'
+    if confirm('Logout?')
+      $http(
+        method: 'DELETE'
+        url: '/-/sessions'
+      ).success -> window.location.pathname = '/'
 
   $scope.login = (user) ->
     $http(

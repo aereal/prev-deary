@@ -21,12 +21,14 @@
   DearyApp.controller('SessionCtrl', [
     '$scope', '$http', function($scope, $http) {
       $scope.logout = function() {
-        return $http({
-          method: 'DELETE',
-          url: '/-/sessions'
-        }).success(function() {
-          return window.location.pathname = '/';
-        });
+        if (confirm('Logout?')) {
+          return $http({
+            method: 'DELETE',
+            url: '/-/sessions'
+          }).success(function() {
+            return window.location.pathname = '/';
+          });
+        }
       };
       return $scope.login = function(user) {
         return $http({
