@@ -4,6 +4,10 @@ module.exports = (grunt) ->
   grunt.initConfig
     sass:
       dist:
+        options:
+          loadPath: [
+            'bower_components/modularized-normalize-scss'
+          ]
         files:
           "public/stylesheets/style.css": "app/assets/stylesheets/style.scss"
     coffee:
