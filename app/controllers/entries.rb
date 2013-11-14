@@ -24,6 +24,24 @@ Deary::App.controllers :entries do
     end
   end
 
+  get :yearly_archive, %r{/(\d{4})/?} do |year|
+    @archive_at = Time.new(year.to_i(10))
+    @entries = Entry.in_year(@archive_at).recently
+    render 'entries/index'
+  end
+
+  get :monthly_archive, %r{/(\d{4})/(\d{2})/?} do |year, month|
+    @archive_at = Time.new(year.to_i(10), month.to_i(10))
+    @entries = Entry.in_month(@archive_at).recently
+    render 'entries/index'
+  end
+
+  get :daily_archive, %r{/(\d{4})/(\d{2})/(\d{2})/?} do |year, month, day|
+    @archive_at = Time.new(year.to_i(10), month.to_i(10), day.to_i(10))
+    @entries = Entry.in_day(@archive_at).recently
+    render 'entries/index'
+  end
+
   %r{(/\d{4}/\d{2}/\d{2}/\d{6})(?:\.(json))?}.tap do |permalink_pattern|
     get :show, permalink_pattern do |path, format|
       @entry = Entry.where(path: path).first or halt 404
