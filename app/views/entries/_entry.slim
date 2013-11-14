@@ -5,8 +5,9 @@
     div.meta
       time datetime=entry.created_at.iso8601 data-relative-time=true pubdate='pubdate' itemprop='datePublished'
         = entry.created_at
-      a href='' data-ng-click='edit("#{entry.path}")'
-        | Edit
+      - if logged_in?
+        a href='' data-ng-click='edit("#{entry.path}")'
+          | Edit
     div.body itemprop='articleBody'
       == entry.formatted_body
   div.editor data-ng-show='showEditor'
