@@ -5,10 +5,6 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     coderay (1.0.9)
-    hirb (0.7.1)
-    hirb-unicode (0.0.5)
-      hirb (~> 0.5)
-      unicode-display_width (~> 0.1.1)
     http_router (0.11.0)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
@@ -86,7 +82,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    unicode-display_width (0.1.1)
     url_mount (0.2.1)
       rack
     yard (0.8.7.3)
@@ -95,8 +90,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  hirb
-  hirb-unicode
   kramdown
   minitest (~> 2.6.0)
   padrino (= 0.11.4)
