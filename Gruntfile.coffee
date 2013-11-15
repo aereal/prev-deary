@@ -25,6 +25,15 @@ module.exports = (grunt) ->
           "#{assetsDirectory}/**/*.js"
         ]
         dest: 'public/javascripts/app.js'
+    esteWatch:
+      options:
+        dirs: [
+          'app/assets/**/'
+        ]
+        livereload:
+          enabled: false
+      scss: (filePath) -> 'css'
+      coffee: (filePath) -> 'js'
     copy:
       font:
         files: [
@@ -35,6 +44,7 @@ module.exports = (grunt) ->
         ]
 
   grunt.loadNpmTasks "grunt-contrib-#{task}" for task in ['coffee', 'concat', 'sass', 'copy']
+  grunt.loadNpmTasks 'grunt-este-watch'
 
   grunt.registerTask 'js', [
     'coffee'
@@ -53,4 +63,8 @@ module.exports = (grunt) ->
     'css'
     'js'
     'font'
+  ]
+
+  grunt.registerTask 'watch', [
+    'esteWatch'
   ]
