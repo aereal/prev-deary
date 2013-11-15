@@ -25,8 +25,16 @@ module.exports = (grunt) ->
           "#{assetsDirectory}/**/*.js"
         ]
         dest: 'public/javascripts/app.js'
+    copy:
+      font:
+        files: [
+          expand: true
+          flatten: true
+          src: 'app/assets/fonts/**/*'
+          dest: 'public/fonts/'
+        ]
 
-  grunt.loadNpmTasks "grunt-contrib-#{task}" for task in ['coffee', 'concat', 'sass']
+  grunt.loadNpmTasks "grunt-contrib-#{task}" for task in ['coffee', 'concat', 'sass', 'copy']
 
   grunt.registerTask 'js', [
     'coffee'
@@ -37,7 +45,12 @@ module.exports = (grunt) ->
     'sass:dist'
   ]
 
+  grunt.registerTask 'font', [
+    'copy:font'
+  ]
+
   grunt.registerTask 'default', [
     'css'
     'js'
+    'font'
   ]
