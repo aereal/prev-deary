@@ -3,6 +3,7 @@ html itemscope='itemscope' itemtype="http://schema.org/#{page_type}" data-ng-app
   head
     meta charset='utf-8'
     title = page_title
+    meta name="viewport" content="width=device-width,initial-scale=1.0"
     - unless page_type == :Article
       meta itemprop="name" content=page_title
     script src="/javascripts/#{app_js_file}"
