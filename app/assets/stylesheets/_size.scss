@@ -1,0 +1,32 @@
+// pow() - Raise number to the nth power.
+//
+// @param {number} $base     Base number
+// @param {number} $exponent Exponent
+// @returns {number}
+@function pow($base, $exponent) {
+  $raised: 1;
+
+  @for $i from 1 through $exponent {
+    $raised: $raised * $base;
+  }
+
+  @return $raised;
+}
+
+// ratio
+$ratio-golden: 1.61803;
+$ratio-silver: 2.41421;
+$ratio-bronze: 3.30378;
+$ratio-yamato: 1.41421;
+
+$default-line-height: $ratio-golden;
+$width-gutter: em($ratio-golden);
+$width-gap: ($width-gutter / 2);
+$width-content: 42em;
+$width-suppli: ($width-content / pow($ratio-golden, 3));
+$width-full: ($width-suppli + $width-gutter + $width-content);
+$aside-footer-width: $width-content / 4;
+
+$width-scrollbar: 1.5em;
+$breakpoint-content: ($width-gap + $width-content + $width-gap + $width-scrollbar);
+$breakpoint-full: (($width-gap + $width-full + $width-gap + $width-scrollbar) * 1.25);

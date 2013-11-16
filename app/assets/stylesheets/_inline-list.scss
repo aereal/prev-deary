@@ -1,0 +1,11 @@
+%inline-list {
+  display: inline-table;
+  padding-left: 0;
+
+  li {
+    display: table-cell;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+}

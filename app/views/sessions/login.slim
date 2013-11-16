@@ -1,15 +1,15 @@
-form.form-horizontal data-ng-controller='SessionCtrl' data-ng-submit='login(user)'
-  div.form-group
-    label.control-label.col-sm-2 for='user-name'
+form data-ng-controller='SessionCtrl' data-ng-submit='login(user)' role="form"
+  div
+    label for='user-name'
       | User
-    div.col-sm-10
-      input#user-name.form-control type='text' placeholder='Yunocchi' required=true data-ng-model='user.name'
-  div.form-group
-    label.control-label.col-sm-2 for='user-password'
+  div
+    input#user-name type='text' placeholder='Yunocchi' required=true data-ng-model='user.name'
+  div
+    label for='user-password'
       | Password
-    div.col-sm-10
-      input#user-password.form-control type='password' placeholder='********' required=true data-ng-model='user.password'
-  div.form-group
-    div.col-sm-offset-2.col-sm-10
-      button.btn.btn-primary type='submit'
-        | Login
+  div
+    input#user-password type='password' placeholder='********' required=true data-ng-model='user.password'
+  ul.actions
+    li
+      button.lsf.primary type='submit'
+        | login

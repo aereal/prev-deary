@@ -12,3 +12,5 @@ db/*.db
 /public/javascripts/app.js
 /public/stylesheets/app.css
 .env
+/public/fonts
+/public/stylesheets/style.css

@@ -1,0 +1,27 @@
+body {
+  line-height: $default-line-height;
+  font-family: "Source Sans Pro", "YuGo", sans-serif;
+  background-color: $bg;
+  color: $fg;
+}
+
+a {
+  &:link, &:visited {
+    color: $red;
+  }
+
+  &:hover {
+    color: darken($red, 15%);
+  }
+}
+
+input[type=text],
+input[type=password],
+textarea {
+  font-family: monospace;
+}
+
+[role=main] {
+  @extend %center-block;
+  max-width: $width-content;
+}

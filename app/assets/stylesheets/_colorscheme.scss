@@ -1,0 +1,10 @@
+$red: #bb3b4c;
+$blue: #1d7faf;
+$cyan: #9397b9;
+$pink: #dbbec1;
+$yellow: #dcbe74;
+
+$bg: lighten($yellow, 30%);
+$fg: darken($red, 44%);
+
+$dimmed-fg: desaturate( lighten( $fg, 50% ), 50% );

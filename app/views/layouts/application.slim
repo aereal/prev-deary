@@ -6,29 +6,10 @@ html itemscope='itemscope' itemtype="http://schema.org/#{page_type}" data-ng-app
     - unless page_type == :Article
       meta itemprop="name" content=page_title
     script src="/javascripts/app.js"
-    link rel='stylesheet' type='text/css' href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap.min.css"
-    link rel='stylesheet' type='text/css' href="//netdna.bootstrapcdn.com/bootstrap/3.0.1/css/bootstrap-theme.min.css"
-    == stylesheet_link_tag 'app'
-  body
-    div.container
-      nav.col-md-3
-        - if logged_in?
-          p
-            | current user:
-            = current_user.name
-        ul.nav.nav-stacked
-          li
-            a href='/'
-              | Home
-          - if logged_in?
-            li data-ng-controller='SessionCtrl'
-              a href='' data-ng-click='logout()'
-                | Logout
-          - else
-            li
-              a href='/-/login'
-                | Login
-      div.main.col-md-9 role='main'
-        - if logged_in?
-          == partial 'entries/new_entry'
-        == yield
+    link rel='stylesheet' type='text/css' href='/stylesheets/style.css'
+  body data-ng-controller="HubCtrl"
+    == partial "components/banner"
+    - if logged_in?
+      == partial 'entries/new_entry'
+    div role="main"
+      == yield

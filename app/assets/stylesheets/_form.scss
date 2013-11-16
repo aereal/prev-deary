@@ -1,0 +1,49 @@
+input[type=button],
+input[type=submit],
+button {
+  outline: none;
+  cursor: pointer;
+  vertical-align: middle;
+  line-height: $default-line-height;
+  padding: 0.1em em($ratio-golden);
+  border: solid 1px;
+  border-radius: 4px;
+  background-color: $bg;
+  color: $fg;
+
+  &:hover,
+  &:focus {
+    background-color: desaturate( darken( $bg, 10% ), 40%);
+  }
+
+  &.primary {
+    $button-bg: $blue;
+
+    background-color: $button-bg;
+    color: $bg;
+
+    &:hover,
+    &:focus {
+      background-color: darken( $button-bg, 10% );
+    }
+  }
+}
+
+form {
+  ul.actions {
+    @extend %inline-list;
+  }
+
+  dl.controls {
+    dt, dd {
+      display: inline;
+      margin: 0;
+      white-space: nowrap;
+    }
+
+    dd + dt::before {
+      content: "\000a";
+      white-space: pre;
+    }
+  }
+}

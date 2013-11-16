@@ -1,0 +1,11 @@
+div.editor data-ng-show='showEditor'
+  form
+    input type='text' data-ng-model='entry.title' placeholder=settings.title_placeholder
+    textarea data-ng-model='entry.body' placeholder=settings.body_placeholder rows=15
+    ul.actions
+      li
+        button.lsf.primary data-ng-click='save(entry)'
+          | ok
+      li
+        button.lsf data-ng-click='showEditor=false'
+          | close
