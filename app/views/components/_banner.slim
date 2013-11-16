@@ -1,0 +1,12 @@
+header role="banner"
+  h1
+    | Deary
+  - if logged_in?
+    nav role="navigation"
+      ul
+        li
+          a.lsf href='' data-ng-click='showNewEntry=true'
+            | addnew
+        li data-ng-controller='SessionCtrl'
+          a.lsf href='' data-ng-click='logout()'
+            | logout
