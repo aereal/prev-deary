@@ -5,8 +5,8 @@ html itemscope='itemscope' itemtype="http://schema.org/#{page_type}" data-ng-app
     title = page_title
     - unless page_type == :Article
       meta itemprop="name" content=page_title
-    script src="/javascripts/app.js"
-    link rel='stylesheet' type='text/css' href='/stylesheets/style.css'
+    script src="/javascripts/#{app_js_file}"
+    link rel='stylesheet' type='text/css' href="/stylesheets/#{app_css_file}"
   body data-ng-controller="HubCtrl"
     == partial "components/banner"
     - if logged_in?
