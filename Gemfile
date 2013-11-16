@@ -29,3 +29,8 @@ group :development do
   gem 'pry-remote'
   gem 'foreman'
 end
+
+# Production requirements
+group :production do
+  gem 'puma'
+end
