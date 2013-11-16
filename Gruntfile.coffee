@@ -87,7 +87,12 @@ module.exports = (grunt) ->
     'copy:font'
   ]
 
+  grunt.registerTask 'font:production', [
+    'font'
+  ]
+
   grunt.registerTask 'production', [
+    'font:production'
     'js:production'
     'css:production'
   ]
