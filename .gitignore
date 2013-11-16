@@ -13,4 +13,3 @@ db/*.db
 /public/stylesheets/app.css
 .env
 /public/fonts
-/public/stylesheets/style.css

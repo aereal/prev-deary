@@ -9,7 +9,7 @@ module.exports = (grunt) ->
             'bower_components/modularized-normalize-scss'
           ]
         files:
-          "public/stylesheets/style.css": "app/assets/stylesheets/style.scss"
+          "public/stylesheets/app.css": "app/assets/stylesheets/app.scss"
     coffee:
       glob_to_multiple:
         expand: true
@@ -52,7 +52,7 @@ module.exports = (grunt) ->
     cssmin:
       production:
         files:
-          'public/stylesheets/style.min.css' : 'public/stylesheets/style.css'
+          'public/stylesheets/app.min.css' : 'public/stylesheets/app.css'
 
   grunt.loadNpmTasks "grunt-contrib-#{task}" for task in [
     'coffee'
