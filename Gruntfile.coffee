@@ -9,7 +9,7 @@ module.exports = (grunt) ->
             'bower_components/modularized-normalize-scss'
           ]
         files:
-          "public/stylesheets/style.css": "app/assets/stylesheets/style.scss"
+          "public/stylesheets/app.css": "app/assets/stylesheets/app.scss"
     coffee:
       glob_to_multiple:
         expand: true
@@ -42,8 +42,26 @@ module.exports = (grunt) ->
           src: 'app/assets/fonts/**/*'
           dest: 'public/fonts/'
         ]
+    uglify:
+      production:
+        options:
+          mangle: false
+          report: true
+        files:
+          'public/javascripts/app.min.js' : 'public/javascripts/app.js'
+    cssmin:
+      production:
+        files:
+          'public/stylesheets/app.min.css' : 'public/stylesheets/app.css'
 
-  grunt.loadNpmTasks "grunt-contrib-#{task}" for task in ['coffee', 'concat', 'sass', 'copy']
+  grunt.loadNpmTasks "grunt-contrib-#{task}" for task in [
+    'coffee'
+    'concat'
+    'sass'
+    'copy'
+    'uglify'
+    'cssmin'
+  ]
   grunt.loadNpmTasks 'grunt-este-watch'
 
   grunt.registerTask 'js', [
@@ -51,12 +69,32 @@ module.exports = (grunt) ->
     'concat:js'
   ]
 
+  grunt.registerTask 'js:production', [
+    'js'
+    'uglify:production'
+  ]
+
   grunt.registerTask 'css', [
     'sass:dist'
   ]
 
+  grunt.registerTask 'css:production', [
+    'css'
+    'cssmin:production'
+  ]
+
   grunt.registerTask 'font', [
     'copy:font'
+  ]
+
+  grunt.registerTask 'font:production', [
+    'font'
+  ]
+
+  grunt.registerTask 'production', [
+    'font:production'
+    'js:production'
+    'css:production'
   ]
 
   grunt.registerTask 'default', [
