@@ -10,6 +10,10 @@ DearyApp.config ['$httpProvider', ($httpProvider) ->
   $httpProvider.defaults.headers[httpMethod] = { 'X-From': window.location.origin } for httpMethod in unindempotentMethods
 ]
 
+DearyApp.controller 'HubCtrl', ['$scope', ($scope) ->
+  $scope.showNewEntry = false
+]
+
 DearyApp.controller 'SessionCtrl', ['$scope', '$http', ($scope, $http) ->
   $scope.logout = ->
     if confirm('Logout?')
@@ -48,6 +52,11 @@ DearyApp.controller 'EditEntryCtrl', ['$scope', '$http', ($scope, $http) ->
 ]
 
 DearyApp.controller 'NewEntryCtrl', ['$scope', '$http', ($scope, $http) ->
+  $scope.$watch "$parent.showNewEntry", (val) ->
+    $scope.showEditor = val
+  $scope.$watch "showEditor", (val) ->
+    $scope.$parent.showNewEntry = val
+
   $scope.showEditor = false
   $scope.path = '/-/entries'
 

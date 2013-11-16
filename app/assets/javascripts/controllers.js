@@ -18,6 +18,12 @@
     }
   ]);
 
+  DearyApp.controller('HubCtrl', [
+    '$scope', function($scope) {
+      return $scope.showNewEntry = false;
+    }
+  ]);
+
   DearyApp.controller('SessionCtrl', [
     '$scope', '$http', function($scope, $http) {
       $scope.logout = function() {
@@ -72,6 +78,12 @@
 
   DearyApp.controller('NewEntryCtrl', [
     '$scope', '$http', function($scope, $http) {
+      $scope.$watch("$parent.showNewEntry", function(val) {
+        return $scope.showEditor = val;
+      });
+      $scope.$watch("showEditor", function(val) {
+        return $scope.$parent.showNewEntry = val;
+      });
       $scope.showEditor = false;
       $scope.path = '/-/entries';
       $scope.edit = function() {
