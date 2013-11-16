@@ -41,6 +41,18 @@ bundle exec padrino start
 ./node_modules/.bin/grunt js
 ```
 
+## Compile SCSS
+
+```
+./node_modules/.bin/grunt css
+```
+
+## Continuous build
+
+```
+./node_modules/.bin/grunt watch
+```
+
 ## Setup database
 
 ```
