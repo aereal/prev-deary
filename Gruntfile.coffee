@@ -42,13 +42,31 @@ module.exports = (grunt) ->
           src: 'app/assets/fonts/**/*'
           dest: 'public/fonts/'
         ]
+    uglify:
+      production:
+        options:
+          mangle: false
+          report: true
+        files:
+          'public/javascripts/app.min.js' : 'public/javascripts/app.js'
 
-  grunt.loadNpmTasks "grunt-contrib-#{task}" for task in ['coffee', 'concat', 'sass', 'copy']
+  grunt.loadNpmTasks "grunt-contrib-#{task}" for task in [
+    'coffee'
+    'concat'
+    'sass'
+    'copy'
+    'uglify'
+  ]
   grunt.loadNpmTasks 'grunt-este-watch'
 
   grunt.registerTask 'js', [
     'coffee'
     'concat:js'
+  ]
+
+  grunt.registerTask 'js:production', [
+    'js'
+    'uglify:production'
   ]
 
   grunt.registerTask 'css', [
@@ -57,6 +75,10 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'font', [
     'copy:font'
+  ]
+
+  grunt.registerTask 'production', [
+    'js:production'
   ]
 
   grunt.registerTask 'default', [
