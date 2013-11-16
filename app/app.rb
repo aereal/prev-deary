@@ -10,6 +10,7 @@ module Deary
 
     set :site_title, 'Deary'
     set :title_placeholder, '✖'
+    set :body_placeholder, '川は洗濯、山は芝刈りです。'
 
     configure do
       Slim::Engine.set_default_options(
