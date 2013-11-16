@@ -49,6 +49,10 @@ module.exports = (grunt) ->
           report: true
         files:
           'public/javascripts/app.min.js' : 'public/javascripts/app.js'
+    cssmin:
+      production:
+        files:
+          'public/stylesheets/style.min.css' : 'public/stylesheets/style.css'
 
   grunt.loadNpmTasks "grunt-contrib-#{task}" for task in [
     'coffee'
@@ -56,6 +60,7 @@ module.exports = (grunt) ->
     'sass'
     'copy'
     'uglify'
+    'cssmin'
   ]
   grunt.loadNpmTasks 'grunt-este-watch'
 
@@ -73,12 +78,18 @@ module.exports = (grunt) ->
     'sass:dist'
   ]
 
+  grunt.registerTask 'css:production', [
+    'css'
+    'cssmin:production'
+  ]
+
   grunt.registerTask 'font', [
     'copy:font'
   ]
 
   grunt.registerTask 'production', [
     'js:production'
+    'css:production'
   ]
 
   grunt.registerTask 'default', [
