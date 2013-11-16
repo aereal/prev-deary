@@ -1,0 +1,36 @@
+article {
+  position: relative;
+
+  h1 {
+    a {
+      text-decoration: none;
+    }
+  }
+
+  footer {
+    color: $dimmed-fg;
+
+    @media (min-width: $breakpoint-full) {
+      position: absolute;
+      top: 0;
+      left: -$aside-footer-width;
+      width: $aside-footer-width;
+    }
+
+    ul {
+      @extend %inline-list;
+
+      li + li::before {
+        content: "|";
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  & + article {
+    @media (min-width: $breakpoint-full) {
+      margin-top: em($default-line-height * 2);
+    }
+  }
+}

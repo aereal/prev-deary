@@ -1,0 +1,22 @@
+[role=banner] {
+  @extend %center-block;
+  position: relative;
+  max-width: $width-content;
+
+  [role=navigation] {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    ul {
+      @extend %inline-list;
+
+      li + li::before {
+        content: "|";
+        display: inline;
+        margin-right: 0.5em;
+        margin-left: 0.5em;
+      }
+    }
+  }
+}
