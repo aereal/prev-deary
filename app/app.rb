@@ -17,11 +17,11 @@ module Deary
         format: :html5,
         tabsize: 2,
       )
+
+      set :host, ENV['APP_HOST']
     end
 
     configure :development do
-      set :host, 'deary.dev'
-
       Slim::Engine.set_default_options(
         pretty: true,
       )
