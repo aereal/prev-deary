@@ -1,40 +1,94 @@
-set :application, 'my_app_name'
-set :repo_url, 'git@example.com:me/my_repo.git'
+set :application, 'deary'
+set :repo_url, 'git://github.com/aereal/deary.git'
+set :branch, 'master'
 
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+set :deploy_to, "/srv/www-app/aereal.org/#{fetch(:application)}"
+set :scm, :git
+set :pty, true
 
-# set :deploy_to, '/var/www/my_app'
-# set :scm, :git
+set :linked_dirs, %w(
+  tmp/sockets
+  vendor/bundle
+)
 
-# set :format, :pretty
-# set :log_level, :debug
-# set :pty, true
+set :rbenv_type, :user
+set :rbenv_ruby, '2.0.0-p247'
 
-# set :linked_files, %w{config/database.yml}
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :supervisor_program_name, 'deary'
 
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-# set :keep_releases, 5
+namespace :proxy do
+  desc 'Reload nginx config'
+  task :reload do
+    on roles(:proxy) do
+      sudo "nginx", "-s", "reload"
+    end
+  end
+end
 
-namespace :deploy do
-
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
+namespace :log do
+  desc 'Show application log'
+  task :app do
+    interruptable do
+      on roles(:app) do
+        sudo "supervisorctl", "tail", "-f", fetch(:supervisor_program_name)
+      end
     end
   end
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+  desc 'Access log'
+  task :access do
+    interruptable do
+      on roles(:proxy) do
+        execute :tail, "-F", "/var/log/nginx/diary.aereal.org.access.log"
+      end
+    end
+  end
+end
+
+namespace :app do
+  desc 'Restart application'
+  task :restart do
+    on roles(:app) do
+      sudo "kill", "-SIGUSR2", "$(sudo supervisorctl pid #{fetch(:supervisor_program_name)})"
+    end
+  end
+
+  desc 'Start application'
+  task :start do
+    on roles(:app) do
+      sudo "supervisorctl", "start", fetch(:supervisor_program_name)
+    end
+  end
+
+  desc 'Stop application'
+  task :stop do
+    on roles(:app) do
+      sudo "supervisorctl", "stop", fetch(:supervisor_program_name)
+    end
+  end
+
+  desc 'Check the status of application'
+  task :status do
+    on roles(:app) do
+      sudo "supervisorctl", "status", fetch(:supervisor_program_name)
+    end
+  end
+end
+
+namespace :deploy do
+  desc 'Restart application'
+  task :restart do
+    on roles(:app) do
+      Rake::Task['app:restart'].invoke
     end
   end
 
   after :finishing, 'deploy:cleanup'
+end
 
+def interruptable(&block)
+  block.call
+rescue Interrupt
+  warn "\nCaught SIGTERM"
+  exit 0
 end
