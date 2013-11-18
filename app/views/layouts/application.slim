@@ -6,7 +6,6 @@ html itemscope='itemscope' itemtype="http://schema.org/#{page_type}" data-ng-app
     meta name="viewport" content="width=device-width,initial-scale=1.0"
     - unless page_type == :Article
       meta itemprop="name" content=page_title
-    script src="/javascripts/#{app_js_file}"
     link rel='stylesheet' type='text/css' href="/stylesheets/#{app_css_file}"
     == partial 'components/google_analytics'
   body data-ng-controller="HubCtrl"
@@ -15,3 +14,4 @@ html itemscope='itemscope' itemtype="http://schema.org/#{page_type}" data-ng-app
       == partial 'entries/new_entry'
     div role="main"
       == yield
+    script src="/javascripts/#{app_js_file}"
