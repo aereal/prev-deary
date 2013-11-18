@@ -28,6 +28,10 @@ group :development do
   gem 'pry-doc'
   gem 'pry-remote'
   gem 'foreman'
+
+  gem 'capistrano', '>= 3.0.0', require: false
+  gem 'capistrano-rbenv', github: 'capistrano/rbenv', require: false
+  gem 'capistrano-bundler', github: 'capistrano/bundler', require: false
 end
 
 # Production requirements
