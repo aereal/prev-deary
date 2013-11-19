@@ -1,7 +1,9 @@
+require 'yaml'
+
+config_from_yaml = YAML.load_file(File.join(Padrino.root, 'config/database.yml'))
+config_for_current_env = config_from_yaml.fetch(Padrino.env)
+database_config = config_for_current_env.merge(loggers: [logger])
+
 Sequel::Model.plugin(:schema)
 Sequel::Model.raise_on_save_failure = false # Do not throw exceptions on failure
-Sequel::Model.db = case Padrino.env
-  when :development then Sequel.connect("postgres://localhost/deary_development", :loggers => [logger])
-  when :production  then Sequel.connect(ENV.fetch('DATABASE_URL'),  :loggers => [logger])
-  when :test        then Sequel.connect("postgres://localhost/deary_test",        :loggers => [logger])
-end
+Sequel::Model.db = Sequel.connect(database_config)

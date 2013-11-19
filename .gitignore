@@ -12,3 +12,4 @@ db/*.db
 /public/javascripts/app.js
 /public/stylesheets/app.css
 .env
+/config/database.yml

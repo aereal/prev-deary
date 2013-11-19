@@ -12,7 +12,7 @@ Deary::App.controllers :entries do
   end
 
   get :index, '/' do
-    @entries = Entry.recently
+    @entries = Entry.latest
     render 'entries/index'
   end
 

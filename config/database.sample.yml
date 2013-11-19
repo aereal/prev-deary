@@ -1,0 +1,19 @@
+---
+:development:
+  :adapter: postgres
+  :database: deary_development
+  :user: deary
+  :password:
+  :encoding: utf-8
+:test:
+  :adapter: postgres
+  :database: deary_test
+  :user: deary
+  :password:
+  :encoding: utf-8
+:production:
+  :adapter: postgres
+  :database: deary_production
+  :user: deary
+  :password:
+  :encoding: utf-8

@@ -6,19 +6,17 @@ module Deary
     register Padrino::Helpers
     register Deary::XFromProtection
 
-    enable :sessions
+    set :settings_file, File.join(Padrino.root, 'config/settings.yml')
+    register Deary::EnvironmentSettings
 
-    set :site_title, 'Deary'
-    set :title_placeholder, '✖'
-    set :body_placeholder, '川は洗濯、山は芝刈りです。'
+    enable :sessions
+    enable :logging
 
     configure do
       Slim::Engine.set_default_options(
         format: :html5,
         tabsize: 2,
       )
-
-      set :host, ENV['APP_HOST']
     end
 
     configure :development do
