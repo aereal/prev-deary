@@ -10,6 +10,7 @@ module Deary
     register Deary::EnvironmentSettings
 
     enable :sessions
+    enable :logging
 
     configure do
       Slim::Engine.set_default_options(
