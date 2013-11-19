@@ -2,6 +2,10 @@ require 'kramdown'
 
 class Entry < Sequel::Model
   dataset_module do
+    def latest
+      recently.limit(10)
+    end
+
     def recently
       order(:created_at).reverse
     end
