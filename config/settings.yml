@@ -2,7 +2,7 @@
 default: &default
   :site_title: 青き花へ
   :title_placeholder: ✖
-  :body_placehodler: 川は洗濯、山は芝刈りです
+  :body_placeholder: 川は洗濯、山は芝刈りです
 
 :development:
   <<: *default
