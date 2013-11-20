@@ -5,6 +5,29 @@ PadrinoTasks.use(:database)
 PadrinoTasks.use(:sequel)
 PadrinoTasks.init
 
+namespace :ci do
+  namespace :prepare do
+    task :database_config do
+      require 'yaml'
+      # See also: http://about.travis-ci.org/docs/user/database-setup/
+      config = {
+        test: {
+          adapter: 'postgres',
+          database: 'deary_test',
+          user: 'postgres',
+          password: '',
+          host: 'localhost',
+        }
+      }
+      File.open('config/database.yml', 'w') do |f|
+        f.write(YAML.dump(config))
+      end
+    end
+  end
+
+  task :prepare => %w(prepare:database_config db:create db:migrate)
+end
+
 namespace :db do
   %w(create drop migrate).each do |sub_task|
     t = Rake.application["sq:#{sub_task}"]
