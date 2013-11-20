@@ -13,7 +13,7 @@ before_install:
 before_script:
   - bundle exec rake ci:prepare
 script: bundle exec rake spec
-after_script: test -f /tmp/create_new_entry.png && curl -X POST http://gyazo.com/upload.cgi -F 'imagedata=@/tmp/create_new_entry.png' -F 'filename=gyazo.com' || echo 'screenshot not found'
+after_script: curl -X POST http://gyazo.com/upload.cgi -F 'imagedata=@/tmp/create_new_entry.png' -F 'filename=gyazo.com'
 matrix:
   allow_failures:
     - rvm: ruby-head
