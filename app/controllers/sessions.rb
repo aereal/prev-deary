@@ -6,14 +6,15 @@ Deary::App.controllers :sessions do
   post :create, '/-/sessions' do
     begin
       auth = Oj.load(request.body.string).symbolize_keys
-      user = User.where(name: auth[:name]).first
+      user = User.where(name: auth[:name]).first or halt 404
       user.authenticate!(auth[:password])
       session[:user_id] = user.id
-      halt 200
     rescue Oj::ParseError
       halt 400
     rescue User::InvalidAuthority
       halt 403
+    else
+      status 200
     end
   end
 
