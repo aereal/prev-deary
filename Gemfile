@@ -21,6 +21,7 @@ group :test do
   gem 'capybara', require: %w(capybara capybara/rspec)
   gem 'poltergeist', require: 'capybara/poltergeist'
   gem 'database_cleaner'
+  gem 'fuubar'
 end
 
 # Development requirements
