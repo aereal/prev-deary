@@ -18,7 +18,7 @@ gem 'oj'
 group :test do
   gem 'rspec'
   gem 'rack-test', require: 'rack/test'
-  gem 'capybara'
+  gem 'capybara', require: %w(capybara capybara/rspec)
   gem 'poltergeist', require: 'capybara/poltergeist'
   gem 'database_cleaner'
 end
