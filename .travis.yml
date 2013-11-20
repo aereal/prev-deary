@@ -11,7 +11,7 @@ before_install:
   - gem --version
   - gem install bundler --pre
 before_script:
-  - bundle exec rake db:create db:migrate
+  - bundle exec rake ci:prepare
 script: bundle exec rake spec
 matrix:
   allow_failures:
