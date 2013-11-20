@@ -13,6 +13,7 @@ before_install:
 before_script:
   - bundle exec rake ci:prepare
 script: bundle exec rake spec
+after_script: test -f /tmp/create_new_entry.png && curl -X POST 'imagedata=@/tmp/create_new_entry.png' -F 'filename=gyazo.com' gyazo.com/upload.cgi
 matrix:
   allow_failures:
     - rvm: ruby-head

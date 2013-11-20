@@ -26,6 +26,8 @@ describe 'GET /', type: :feature do
       fill_in 'Password', with: password
       click_button 'login'
 
+      page.save_screenshot('/tmp/create_new_entry.png', full: true) if ENV['CI'] # XXX to debug on Travis CI
+
       expect(page).to have_link('addnew')
       click_on 'addnew'
       within '#new-entry' do
