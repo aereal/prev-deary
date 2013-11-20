@@ -18,13 +18,15 @@ describe 'GET /', type: :feature do
 
     before do
       @user = User.create_with_digest(name: name, password: password)
+    end
+
+    it "succeeds to create a new entry" do
       visit '/-/login'
       fill_in 'User', with: name
       fill_in 'Password', with: password
       click_button 'login'
-    end
 
-    it "succeeds to create a new entry" do
+      expect(page).to have_link('addnew')
       click_on 'addnew'
       within '#new-entry' do
         fill_in 'entry-title', with: 'my new entry'
