@@ -19,6 +19,7 @@ group :test do
   gem 'rspec'
   gem 'rack-test', require: 'rack/test'
   gem 'capybara'
+  gem 'poltergeist', require: 'capybara/poltergeist'
   gem 'database_cleaner'
 end
 
