@@ -7,6 +7,19 @@ PadrinoTasks.init
 
 namespace :ci do
   namespace :prepare do
+    task :npm do
+      sh 'npm', 'install'
+    end
+
+    task :bower => :npm do
+      sh './node_modules/.bin/bower', 'install'
+    end
+
+    task :grunt => :bower do
+      sh './node_modules/.bin/grunt'
+    end
+    task :assets => :grunt
+
     task :database_config do
       require 'yaml'
       # See also: http://about.travis-ci.org/docs/user/database-setup/
@@ -25,7 +38,7 @@ namespace :ci do
     end
   end
 
-  task :prepare => %w(prepare:database_config db:create db:migrate)
+  task :prepare => %w(prepare:database_config db:create db:migrate prepare:assets)
 end
 
 namespace :db do
