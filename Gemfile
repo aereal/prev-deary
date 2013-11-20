@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
-
 # Project requirements
 gem 'padrino', '0.11.4'
 gem 'rake'
