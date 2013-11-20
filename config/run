@@ -1,0 +1,14 @@
+#!/bin/sh
+
+www_home=/srv/www-app
+app_root=$www_home/aereal.org/deary
+socket_path=$app_root/shared/tmp/deary.sock
+
+export PATH=$www_home/.rbenv/shims:$PATH
+export PADRINO_ENV="production"
+
+exec bundle exec puma \
+  --debug \
+  -b unix://$socket_path \
+  -e $PADRINO_ENV \
+  -t2:4
