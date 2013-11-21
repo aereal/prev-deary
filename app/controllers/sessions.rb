@@ -4,11 +4,7 @@ Deary::App.controllers :sessions do
   end
 
   post :create, '/-/sessions' do
-    begin
-      auth = Oj.load(request.body.string).symbolize_keys
-    rescue Oj::ParseError
-      halt 400
-    end
+    auth = request_body_as_json
     user = User.where(name: auth[:name]).first or halt 404
     UserAuthentication.authenticate(user: user, password: auth[:password]) or halt 403
     session[:user_id] = user.id
