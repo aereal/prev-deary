@@ -3,10 +3,8 @@ require 'spec_helper'
 describe '/-/sessions', js: true do
   let(:name) { 'dankogai' }
   let(:password) { 'kogaidan' }
-
-  before do
-    @user = User.create_with_digest(name: name, password: password)
-  end
+  let(:authentication) { Authentication.new_from_password(password) }
+  let!(:user) { User.create(name: name, password_digest: authentication.digest, password_salt: authentication.salt) }
 
   it "can create a new session" do
     visit '/-/login'

@@ -15,9 +15,10 @@ describe 'GET /', type: :feature do
   context "when logged in", js: true do
     let(:name) { 'dankogai' }
     let(:password) { 'kogaidan' }
+    let(:authentication) { Authentication.new_from_password(password) }
+    let!(:user) { User.create(name: name, password_digest: authentication.digest, password_salt: authentication.salt) }
 
     before do
-      @user = User.create_with_digest(name: name, password: password)
       visit '/-/login'
       fill_in 'User', with: name
       fill_in 'Password', with: password
