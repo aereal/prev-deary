@@ -5,6 +5,21 @@ PadrinoTasks.use(:database)
 PadrinoTasks.use(:sequel)
 PadrinoTasks.init
 
+error_documents = %w( 403 404 500 ).map {|error_code|
+  "public/#{error_code}.html".tap {|error_doc|
+    file error_doc do |t|
+      require_relative 'config/boot'
+      app = Deary::App.new
+      File.open(t.name, 'w') do |f|
+        f.puts app.helpers.send(:render, "errors/#{error_code}", layout: false)
+      end
+    end
+  }
+}
+
+desc "Compile error documents"
+task :error_documents => error_documents
+
 namespace :ci do
   namespace :prepare do
     task :npm do
