@@ -1,4 +1,4 @@
-class UserAuthentication
+class UserAuthenticator
   def self.authenticate(user: nil, password: '')
     auth = Authentication.new(salt: user.password_salt, digest: user.password_digest)
     auth.authenticate(password)
