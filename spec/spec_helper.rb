@@ -16,6 +16,7 @@ def app(app = nil, &blk)
 end
 
 RSpec.configure do |config|
+  FactoryGirl.find_definitions
   Capybara.app = Padrino.application
   Capybara.javascript_driver = :poltergeist
 

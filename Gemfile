@@ -20,6 +20,7 @@ group :test do
   gem 'poltergeist', require: 'capybara/poltergeist'
   gem 'database_cleaner'
   gem 'fuubar'
+  gem 'factory_girl'
 end
 
 # Development requirements
