@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    style
+      == error_stylesheet(403)
+    title
+      | 403 Forbidden
+  body
+    h1
+      span.status-code
+        | 403
+      span.status-message
+        |  Forbidden
+    nav
+      p
+        a href='/'
+          img src=data_uri(Padrino.root('public/images/logo.png'))

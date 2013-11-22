@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    style
+      == error_stylesheet(500)
+    title
+      | 500 Internal Server Error
+  body
+    h1
+      span.status-code
+        | 500
+      span.status-message
+        |  Internal Server Error
+    nav
+      p
+        a href='/'
+          img src=data_uri(Padrino.root('public/images/logo.png'))
