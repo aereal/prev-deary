@@ -1,0 +1,32 @@
+@import "../colorscheme";
+@import "../size";
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1;
+  background-color: $bg;
+  color: $fg;
+  font-family: "Helvetica", sans-serif;
+}
+
+h1 {
+  letter-spacing: -0.08em;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  color: $dimmed-fg;
+  font-size: 10em;
+
+  .status-message::before {
+    content: "";
+    display: block;
+  }
+}
+
+nav {
+  text-align: center;
+}
