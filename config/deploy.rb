@@ -8,6 +8,7 @@ set :pty, true
 
 set :linked_files, %w(
   config/database.yml
+  config/newrelic.yml
 )
 set :linked_dirs, %w(
   tmp/sockets

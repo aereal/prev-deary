@@ -2,8 +2,22 @@ remote_file '/tmp/supervisord.ini' => 'config/supervisord.ini', roles: :app
 remote_file '/tmp/nginx.conf' => 'config/nginx.conf', roles: :proxy
 remote_file '/tmp/app-run.sh' => 'config/run', roles: :app
 remote_file '/tmp/database.yml' => 'config/database.yml', roles: :app
+remote_file 'config/newrelic.yml' => 'tmp/newrelic.yml', roles: :app
+
+file 'tmp/newrelic.yml' do |t|
+  sh "curl", "-o", t.name, "https://rpm.newrelic.com/accounts/#{ENV['NEWRELIC_ACCOUNT']}/newrelic.yml"
+end
+
+namespace :deploy do
+  namespace :check do
+    task :linked_files => 'config/newrelic.yml'
+  end
+end
 
 namespace :provision do
+  desc 'Install newrelic.yml'
+  task :newrelic => 'config/newrelic.yml'
+
   desc 'Install run file'
   task :run => '/tmp/app-run.sh' do |t|
     on roles(:app) do
