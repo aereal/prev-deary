@@ -6,7 +6,7 @@ begin
   spec_tasks.each do |folder|
     RSpec::Core::RakeTask.new("spec:#{folder}") do |t|
       t.pattern = "./spec/#{folder}/**/*_spec.rb"
-      t.rspec_opts = %w(-fs --color)
+      t.verbose = (ENV['RSPEC_VERBOSE'] || '') == 'on'
     end
   end
 

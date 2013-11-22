@@ -1,0 +1,39 @@
+remote_file '/tmp/supervisord.ini' => 'config/supervisord.ini', roles: :app
+remote_file '/tmp/nginx.conf' => 'config/nginx.conf', roles: :proxy
+remote_file '/tmp/app-run.sh' => 'config/run', roles: :app
+remote_file '/tmp/database.yml' => 'config/database.yml', roles: :app
+
+namespace :provision do
+  desc 'Install run file'
+  task :run => '/tmp/app-run.sh' do |t|
+    on roles(:app) do
+      run_file = "#{fetch(:deploy_to)}/shared/scripts/run"
+      sudo "mv", t.prerequisites.first, run_file
+      sudo "chmod", "+x", run_file
+      sudo "chown", "www-app:www-app", run_file
+    end
+  end
+
+  desc 'Setup supervisord config'
+  task :supervisord => '/tmp/supervisord.ini' do |t|
+    on roles(:app) do
+      sudo "mv #{t.prerequisites.first} /etc/supervisor/conf.d/deary.ini"
+    end
+  end
+
+  desc 'Install nginx.conf'
+  task :nginx => '/tmp/nginx.conf' do |t|
+    on roles(:proxy) do
+      sudo "mv #{t.prerequisites.first} /etc/nginx/sites-available/90-deary.conf"
+    end
+  end
+
+  desc 'Install config/database.yml'
+  task :database_config => '/tmp/database.yml' do |t|
+    on roles(:app) do
+      sudo "mv", t.prerequisites.first, "#{fetch(:deploy_to)}/shared/config/database.yml"
+    end
+  end
+end
+
+# vim:set ft=ruby:

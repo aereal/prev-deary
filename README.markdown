@@ -2,6 +2,9 @@
 
 Dear my diary
 
+ * Development build: [![Build Status (develop)](https://travis-ci.org/aereal/deary.png?branch=develop)](https://travis-ci.org/aereal/deary)
+ * Latest build: [![Build Status (latest build)](https://travis-ci.org/aereal/deary.png)](https://travis-ci.org/aereal/deary)
+
 ## Dependencies
 
  * Ruby 1.9.3 or later than (__recommended later 2.0.0__)

@@ -6,6 +6,9 @@ set :deploy_to, "/srv/www-app/aereal.org/#{fetch(:application)}"
 set :scm, :git
 set :pty, true
 
+set :linked_files, %w(
+  config/database.yml
+)
 set :linked_dirs, %w(
   tmp/sockets
   vendor/bundle

@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
-
 # Project requirements
 gem 'padrino', '0.11.4'
 gem 'rake'
@@ -18,8 +16,11 @@ gem 'oj'
 group :test do
   gem 'rspec'
   gem 'rack-test', require: 'rack/test'
-  gem 'capybara'
+  gem 'capybara', require: %w(capybara capybara/rspec)
+  gem 'poltergeist', require: 'capybara/poltergeist'
   gem 'database_cleaner'
+  gem 'fuubar'
+  gem 'factory_girl'
 end
 
 # Development requirements
