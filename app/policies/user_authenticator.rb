@@ -2,6 +2,8 @@ require 'openssl'
 require 'securerandom'
 
 class UserAuthenticator
+  class InvalidAuthentication < ::StandardError; end
+
   module DigestStrategy
     ENCRYPT_METHOD = 'sha256'
 
@@ -18,13 +20,16 @@ class UserAuthenticator
     module_function :generate
   end
 
+  def self.authenticated?(user: user, password: '')
+    digest = DigestStrategy.digest_for(salt: user.password_salt, password: password)
+    user.password_digest == digest
+  end
+
   def self.authenticate(user: nil, password: '')
-    auth = Authentication.new(salt: user.password_salt, digest: user.password_digest)
-    auth.authenticate(password)
+    authenticated?(user: user, password: password) ? user : nil
   end
 
   def self.authenticate!(user: nil, password: '')
-    auth = Authentication.new(salt: user.password_salt, digest: user.password_digest)
-    auth.authenticate!(password)
+    self.authenticated?(user: user, password: password) ? user : (raise InvalidAuthentication)
   end
 end
