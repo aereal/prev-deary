@@ -11,6 +11,7 @@ gem 'pg'
 gem 'sequel'
 gem 'kramdown'
 gem 'oj'
+gem 'redis-rack'
 
 # Test requirements
 group :test do
