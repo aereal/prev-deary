@@ -30,6 +30,13 @@ Bundler.require(:default, PADRINO_ENV)
 #   include Padrino::Helpers::TranslationHelpers
 # end
 
+Padrino::Logger::Config[:production] = {
+  log_level: :info,
+  stream: :stderr,
+  colorize_logging: false,
+  format_datetime: '%Y-%m-%dT%H:%M:%S%z',
+}
+
 ##
 # Add your before (RE)load hooks here
 #
