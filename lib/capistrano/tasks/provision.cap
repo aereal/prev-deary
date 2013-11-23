@@ -3,14 +3,22 @@ remote_file '/tmp/nginx.conf' => 'config/nginx.conf', roles: :proxy
 remote_file '/tmp/app-run.sh' => 'config/run', roles: :app
 remote_file '/tmp/database.yml' => 'config/database.yml', roles: :app
 remote_file 'config/newrelic.yml' => 'tmp/newrelic.yml', roles: :app
+remote_file 'config/session_secret' => '/tmp/session_secret', roles: :app
 
 file 'tmp/newrelic.yml' do |t|
   sh "curl", "-o", t.name, "https://rpm.newrelic.com/accounts/#{ENV['NEWRELIC_ACCOUNT']}/newrelic.yml"
 end
 
+file '/tmp/session_secret' do |t|
+  require 'securerandom'
+  File.open(t.name, 'w') do |f|
+    f.puts(SecureRandom.urlsafe_base64(32))
+  end
+end
+
 namespace :deploy do
   namespace :check do
-    task :linked_files => 'config/newrelic.yml'
+    task :linked_files => %w( config/newrelic.yml config/session_secret )
   end
 end
 

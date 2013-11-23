@@ -9,6 +9,7 @@ set :pty, true
 set :linked_files, %w(
   config/database.yml
   config/newrelic.yml
+  config/session_secret
 )
 set :linked_dirs, %w(
   tmp/sockets
