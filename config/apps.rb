@@ -22,7 +22,7 @@
 #
 
 def find_session_secret_or_default(file)
-  Find.read(file).strip
+  File.read(file).strip
 rescue Errno::ENOENT
   SecureRandom.urlsafe_base64(32)
 end
