@@ -23,18 +23,18 @@ module Deary
       Slim::Engine.set_default_options(
         pretty: true,
       )
+    end
 
-      not_found do
-        render "errors/404", layout: false
-      end
+    not_found do
+      render "errors/404", layout: false
+    end
 
-      error 403 do
-        render "errors/403", layout: false
-      end
+    error 403 do
+      render "errors/403", layout: false
+    end
 
-      error 500 do
-        render "errors/500", layout: false
-      end
+    error 500 do
+      render "errors/500", layout: false
     end
   end
 end
