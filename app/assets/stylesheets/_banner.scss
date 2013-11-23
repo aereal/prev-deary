@@ -1,3 +1,7 @@
+@import "center-block";
+@import "size";
+@import "inline-list";
+
 [role=banner] {
   @extend %center-block;
   position: relative;
