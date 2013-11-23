@@ -13,3 +13,4 @@ db/*.db
 /public/stylesheets/app.css
 .env
 /config/database.yml
+/config/session_secret

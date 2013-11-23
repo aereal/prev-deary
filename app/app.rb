@@ -23,18 +23,32 @@ module Deary
       Slim::Engine.set_default_options(
         pretty: true,
       )
+
+      not_found do
+        render "errors/404", layout: false
+      end
+
+      error 403 do
+        render "errors/403", layout: false
+      end
+
+      error 500 do
+        render "errors/500", layout: false
+      end
     end
 
-    not_found do
-      render "errors/404", layout: false
-    end
+    configure :production do
+      not_found do
+        File.read(Padrino.root('public', '404.html'))
+      end
 
-    error 403 do
-      render "errors/403", layout: false
-    end
+      error 403 do
+        File.read(Padrino.root('public', '403.html'))
+      end
 
-    error 500 do
-      render "errors/500", layout: false
+      error 500 do
+        File.read(Padrino.root('public', '500.html'))
+      end
     end
   end
 end
