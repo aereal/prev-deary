@@ -5,7 +5,7 @@ Deary::App.controllers :sessions do
 
   post :create, '/-/sessions' do
     auth = request_body_as_json
-    user = User.where(name: auth[:name]).first or halt 404
+    user = User.where(name: auth[:name]).first or halt 403
     UserAuthenticator.authenticate(user: user, password: auth[:password]) or halt 403
     session[:user_id] = user.id
     status 200
