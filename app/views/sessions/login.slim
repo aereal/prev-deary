@@ -1,15 +1,17 @@
-form data-ng-controller='SessionCtrl' data-ng-submit='login(user)' role="form"
+form data-ng-controller='SessionCtrl' data-ng-submit='login(user)' role="form" name="loginForm"
+  p.error data-ng-show="loginForm.$error.invalidAuthentication"
+    | Invalid name or password
   div
     label for='user-name'
       | User
   div
-    input#user-name type='text' placeholder='Yunocchi' required=true data-ng-model='user.name'
+    input#user-name type='text' placeholder='Yunocchi' required=true data-ng-model='user.name' name='name'
   div
     label for='user-password'
       | Password
   div
-    input#user-password type='password' placeholder='********' required=true data-ng-model='user.password'
+    input#user-password type='password' placeholder='********' required=true data-ng-model='user.password' name='password'
   ul.actions
     li
-      button.lsf.primary type='submit'
+      button.lsf.primary type='submit' data-ng-disabled="loginForm.$invalid"
         | login

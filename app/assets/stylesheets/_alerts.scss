@@ -1,0 +1,14 @@
+@import "colorscheme";
+
+%alert {
+  border: solid 1px;
+  border-radius: 5px;
+  padding: 0.7em;
+}
+
+.error {
+  @extend %alert;
+  border-color: $red;
+  color: $red;
+  background-color: lighten(desaturate($red, 15%), 45%);
+}

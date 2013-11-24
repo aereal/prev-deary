@@ -29,7 +29,11 @@ DearyApp.controller 'SessionCtrl', ['$scope', '$http', ($scope, $http) ->
       data: user
       headers:
         'Content-Type' : 'application/json'
-    ).success -> window.location.pathname = '/'
+    ).success(->
+      window.location.pathname = '/'
+    ).error(->
+      $scope.loginForm.$error.invalidAuthentication = true
+    )
 ]
 
 DearyApp.controller 'EditEntryCtrl', ['$scope', '$http', ($scope, $http) ->
