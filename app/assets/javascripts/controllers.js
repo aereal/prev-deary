@@ -46,6 +46,8 @@
           }
         }).success(function() {
           return window.location.pathname = '/';
+        }).error(function() {
+          return $scope.loginForm.$error.invalidAuthentication = true;
         });
       };
     }
