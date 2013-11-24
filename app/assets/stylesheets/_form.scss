@@ -13,23 +13,32 @@ button {
   padding: 0.1em em($ratio-golden);
   border: solid 1px;
   border-radius: 4px;
-  background-color: $bg;
-  color: $fg;
 
-  &:hover,
-  &:focus {
-    background-color: desaturate( darken( $bg, 10% ), 40%);
+  &[disabled] {
+    cursor: not-allowed;
+    background-color: desaturate(darken($bg, 15%), 40%);
+    color: desaturate(darken($fg, 15%), 40%);
   }
 
-  &.primary {
-    $button-bg: $blue;
+  &:not([disabled]) {
+    background-color: $bg;
+    color: $fg;
 
-    background-color: $button-bg;
-    color: $bg;
-
-    &:hover,
+    &:hover
     &:focus {
-      background-color: darken( $button-bg, 10% );
+      background-color: desaturate( darken( $bg, 10% ), 40%);
+    }
+
+    &.primary {
+      $button-bg: $blue;
+
+      background-color: $button-bg;
+      color: $bg;
+
+      &:hover,
+      &:focus {
+        background-color: darken( $button-bg, 10% );
+      }
     }
   }
 }
