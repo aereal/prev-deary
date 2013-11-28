@@ -1,1 +1,3 @@
 *.min.* -diff
+app/assets/fonts/**/*.svg -diff
+public/fonts/**/*.svg -diff
