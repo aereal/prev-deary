@@ -17,6 +17,8 @@ module Deary
         format: :html5,
         tabsize: 2,
       )
+
+      use Rack::Session::Redis
     end
 
     configure :development do

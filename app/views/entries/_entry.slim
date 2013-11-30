@@ -1,7 +1,7 @@
 == article_tag do
   div.content data-ng-show='!showEditor'
     h1 itemprop='name'
-      == link_to entry.title || settings.title_placeholder, entry.path, itemprop: 'url', unless: :current
+      == link_to entry.title.empty? ? settings.title_placeholder : entry.title, entry.path, itemprop: 'url', unless: :current
     div.entry-body itemprop='articleBody'
       == entry.formatted_body
     footer
