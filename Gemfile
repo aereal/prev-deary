@@ -22,6 +22,7 @@ group :test do
   gem 'database_cleaner'
   gem 'fuubar'
   gem 'factory_girl'
+  gem 'coveralls', require: false
 end
 
 # Development requirements
