@@ -64,3 +64,10 @@ namespace :db do
     task sub_task => t.name
   end
 end
+
+desc "Run specs and take coverage"
+task :coverage => [:coverage_prepare, :spec]
+
+task :coverage_prepare do
+  ENV['COVERAGE'] = '1'
+end
