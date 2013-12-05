@@ -2,14 +2,6 @@ require 'kramdown'
 
 class Entry < Sequel::Model
   dataset_module do
-    def latest
-      recently.limit(10)
-    end
-
-    def recently
-      order(:created_at).reverse
-    end
-
     def created_between(time_part, time)
       where(created_at: time.send("beginning_of_#{time_part}") .. time.send("end_of_#{time_part}"))
     end

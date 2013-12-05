@@ -12,7 +12,9 @@ Deary::App.controllers :entries do
   end
 
   get :index, '/' do
-    @entries = Entry.latest
+    @entries = Query.new(Entry.dataset) do
+      use LatestEntriesQuery, 15
+    end.invoke
     render 'entries/index'
   end
 
