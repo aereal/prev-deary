@@ -33,20 +33,26 @@ Deary::App.controllers :entries do
   end
 
   get :yearly_archive, %r{/(\d{4})/?} do |year|
-    @archive_at = Time.new(year.to_i(10))
-    @entries = Entry.in_year(@archive_at).recently
+    archive_at = @archive_at = Time.new(year.to_i(10))
+    @entries = Query.new(Entry.dataset) do
+      use YearlyArchiveQuery, archive_at
+    end.invoke
     render 'entries/index'
   end
 
   get :monthly_archive, %r{/(\d{4})/(\d{2})/?} do |year, month|
-    @archive_at = Time.new(year.to_i(10), month.to_i(10))
-    @entries = Entry.in_month(@archive_at).recently
+    archive_at = @archive_at = Time.new(year.to_i(10), month.to_i(10))
+    @entries = Query.new(Entry.dataset) do
+      use MonthlyArchiveQuery, archive_at
+    end.invoke
     render 'entries/index'
   end
 
   get :daily_archive, %r{/(\d{4})/(\d{2})/(\d{2})/?} do |year, month, day|
-    @archive_at = Time.new(year.to_i(10), month.to_i(10), day.to_i(10))
-    @entries = Entry.in_day(@archive_at).recently
+    archive_at = @archive_at = Time.new(year.to_i(10), month.to_i(10), day.to_i(10))
+    @entries = Query.new(Entry.dataset) do
+      use DailyArchiveQuery, archive_at
+    end.invoke
     render 'entries/index'
   end
 
