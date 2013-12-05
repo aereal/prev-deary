@@ -48,6 +48,7 @@ end
 # Add your after (RE)load hooks here
 #
 Padrino.after_load do
+  Deary::App.prerequisites << Padrino.root('app', 'policies', '**/*.rb')
 end
 
 Padrino.load!
