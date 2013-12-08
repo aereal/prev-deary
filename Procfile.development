@@ -1,4 +1,0 @@
-web: bundle exec padrino start -p ${PORT:-3000}
-db: postgres -D $POSTGRES_ROOT
-grunt: grunt watch
-redis: redis-server /usr/local/etc/redis.conf --loglevel verbose

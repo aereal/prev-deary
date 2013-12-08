@@ -1,4 +1,18 @@
 PADRINO_ENV = 'test' unless defined?(PADRINO_ENV)
+
+if ENV['COVERAGE'] == '1'
+  require 'bundler/setup' unless defined?(Bundler)
+  require 'simplecov'
+  require 'coveralls'
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+    SimpleCov::Formatter::HTMLFormatter,
+    Coveralls::SimpleCov::Formatter,
+  ]
+  SimpleCov.start do
+    add_filter 'spec/'
+  end
+end
+
 require File.expand_path(File.dirname(__FILE__) + "/../config/boot")
 
 # You can use this method to custom specify a Rack app

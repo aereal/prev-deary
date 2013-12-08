@@ -42,12 +42,15 @@ Padrino::Logger::Config[:production] = {
 #
 Padrino.before_load do
   Padrino.dependency_paths << Padrino.root('app', 'policies', '**/*.rb')
+  Padrino.dependency_paths << Padrino.root('app', 'queries', '**/*.rb')
 end
 
 ##
 # Add your after (RE)load hooks here
 #
 Padrino.after_load do
+  Deary::App.prerequisites << Padrino.root('app', 'policies', '**/*.rb')
+  Deary::App.prerequisites << Padrino.root('app', 'queries', '**/*.rb')
 end
 
 Padrino.load!
