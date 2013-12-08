@@ -1,6 +1,6 @@
 ---
 default: &default
-  :site_title: 青き花へ
+  :site_title: just a Chord
   :title_placeholder: ✖
   :body_placeholder: 川は洗濯、山は芝刈りです
 
